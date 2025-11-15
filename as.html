@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>银杏树叶下落效果</title>
+  <style>
+    body {
+      margin: 0;
+      /* 用渐变背景模拟普通背景 */
+      <mark>background: linear-gradient(to bottom, #b3e5fc, #81d4fa);
+      overflow: hidden;</mark>
+    }
+
+    .leaf {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: yellowgreen;
+      border-radius: 0 50%;
+      transform: rotate(45deg);
+      animation: fall 5s linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        top: -20px;
+        transform: translateX(0) rotate(0deg);
+      }
+      100% {
+        top: 100vh;
+        transform: translateX(200px) rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+</body>
+<script>
+  function createLeaf() {
+    const leaf = document.createElement('div');
+    leaf.classList.add('leaf');
+    leaf.style.left = Math.random() * window.innerWidth + 'px';
+    leaf.style.animationDuration = (Math.random() * 3 + 2) + 's';
+    document.body.appendChild(leaf);
+
+    setTimeout(() => {
+      leaf.remove();
+    }, 5000);
+  }
+
+  setInterval(createLeaf, 500);
+</script>
+
+</html>
